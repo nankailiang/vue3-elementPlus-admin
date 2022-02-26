@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+      "target": "es2016", 
+      "jsx": "preserve",
+      "module": "esnext",
+      "moduleResolution": "node",
+      "types": ["vite/client"],
+      "baseUrl": "./", 
+      "paths": {
+          "@/*": [
+            "src/*"
+          ]
+       }, 
+      "strict": true,
+      "skipLibCheck": true
+  }
+}
