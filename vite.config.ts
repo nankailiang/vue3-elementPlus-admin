@@ -10,14 +10,14 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-      "public": path.resolve(__dirname, "./public"),
+      "~": path.resolve(__dirname, "./public"),
     },
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@import './src/styles/main.scss';`
-      }
-    }
-  },
+  // css: {
+  //   preprocessorOptions: {
+  //     scss: {
+  //       additionalData: `@import "@/styles/main.scss";`
+  //     }
+  //   }
+  // },
 })

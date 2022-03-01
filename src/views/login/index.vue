@@ -46,32 +46,43 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { reactive, ref } from "vue"
+<script lang="ts">
+import { reactive, ref, defineComponent } from "vue"
 import { User, Unlock } from '@element-plus/icons-vue'
 import type { ElForm } from 'element-plus'
 
-type FormInstance = InstanceType<typeof ElForm>
-const formRef = ref<FormInstance>()
-const form = reactive<{
-  name: string
-  pass: string
-}>({
-  name: '',
-  pass: '',
-})
-
-const submitForm = (formEl: FormInstance | undefined) => {
-  if (!formEl) return
-  formEl.validate((valid) => {
-    if (valid) {
-      console.log('submit!', form)
-    } else {
-      console.log('error submit!')
-      return false
+export default defineComponent({
+  name: 'Login',
+  setup() {
+    type FormInstance = InstanceType<typeof ElForm>
+    const formRef = ref<FormInstance>()
+    const form = reactive<{
+      name: string
+      pass: string
+    }>({
+      name: '',
+      pass: '',
+    })
+    const submitForm = (formEl: FormInstance | undefined) => {
+      if (!formEl) return
+      formEl.validate((valid) => {
+        if (valid) {
+          console.log('submit!', form)
+        } else {
+          console.log('error submit!')
+          return false
+        }
+      })
     }
-  })
-}
+    return {
+      formRef,
+      form,
+      User,
+      Unlock,
+      submitForm
+    }
+  }
+})
 </script>
 
 <style lang="scss" scoped>
