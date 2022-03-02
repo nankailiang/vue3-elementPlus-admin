@@ -50,7 +50,7 @@
 import { reactive, ref, defineComponent } from "vue"
 import { User, Unlock } from '@element-plus/icons-vue'
 import type { ElForm } from 'element-plus'
-
+import { login } from '@/api/user'
 export default defineComponent({
   name: 'Login',
   setup() {
@@ -68,6 +68,7 @@ export default defineComponent({
       formEl.validate((valid) => {
         if (valid) {
           console.log('submit!', form)
+          login(form)
         } else {
           console.log('error submit!')
           return false
