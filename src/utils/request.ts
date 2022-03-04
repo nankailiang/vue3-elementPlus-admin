@@ -5,7 +5,7 @@
 
  // 创建一个axios实例
  const request = axios.create({
-   baseURL: 'http://localhost:3000/' // 请求的基础路径
+   baseURL: 'http://localhost:3000' // 请求的基础路径
  })
  
  // 导出请求方法

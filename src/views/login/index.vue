@@ -47,15 +47,18 @@
 </template>
 
 <script lang="ts">
-import { reactive, ref, defineComponent } from "vue"
+import { reactive, ref, defineComponent } from 'vue'
 import { User, Unlock } from '@element-plus/icons-vue'
 import type { ElForm } from 'element-plus'
+import { ElMessage } from 'element-plus'
 import { login } from '@/api/user'
+import { useRouter } from 'vue-router'
 export default defineComponent({
   name: 'Login',
   setup() {
     type FormInstance = InstanceType<typeof ElForm>
     const formRef = ref<FormInstance>()
+    const router = useRouter()
     const form = reactive<{
       name: string
       pass: string
@@ -67,8 +70,16 @@ export default defineComponent({
       if (!formEl) return
       formEl.validate((valid) => {
         if (valid) {
-          console.log('submit!', form)
-          login(form)
+          login(form).then(res => {
+            if(res.data.data) {
+              ElMessage.success(res.data.message)
+              router.push({	name:"home" }) 
+            } else {
+              ElMessage.error(res.data.message+'321')
+            }
+          }).catch(err =>{
+            ElMessage.error(err+'123')
+          })
         } else {
           console.log('error submit!')
           return false
