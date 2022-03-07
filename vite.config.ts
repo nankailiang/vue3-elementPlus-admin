@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     vue(),
     viteMockServe({
-      mockPath: "./src/mock",
+      mockPath: "./mock",
       supportTs: true
     })
   ],
